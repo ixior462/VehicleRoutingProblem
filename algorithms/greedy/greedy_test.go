@@ -1,7 +1,7 @@
 package greedy
 
 import (
-	"ixior/VehicleRoutingProblem/model"
+	"ixior462/VehicleRoutingProblem/model"
 	"testing"
 )
 

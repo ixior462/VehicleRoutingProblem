@@ -1,10 +1,10 @@
 package heuristics
 
 import (
-	"ixior/VehicleRoutingProblem/algorithms"
-	"ixior/VehicleRoutingProblem/algorithms/greedy"
-	"ixior/VehicleRoutingProblem/config"
-	"ixior/VehicleRoutingProblem/model"
+	"ixior462/VehicleRoutingProblem/algorithms"
+	"ixior462/VehicleRoutingProblem/algorithms/greedy"
+	"ixior462/VehicleRoutingProblem/config"
+	"ixior462/VehicleRoutingProblem/model"
 )
 
 func TabuSearchHeuristic(data *model.CaseDTO, configFile *config.Config) *model.Solution {

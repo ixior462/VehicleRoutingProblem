@@ -1,10 +1,10 @@
 package transformations
 
 import (
-	"ixior/VehicleRoutingProblem/algorithms/greedy"
-	"ixior/VehicleRoutingProblem/common"
-	"ixior/VehicleRoutingProblem/config"
-	"ixior/VehicleRoutingProblem/model"
+	"ixior462/VehicleRoutingProblem/algorithms/greedy"
+	"ixior462/VehicleRoutingProblem/common"
+	"ixior462/VehicleRoutingProblem/config"
+	"ixior462/VehicleRoutingProblem/model"
 	"testing"
 )
 

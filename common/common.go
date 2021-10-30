@@ -2,7 +2,7 @@ package common
 
 import (
 	"bufio"
-	"ixior/VehicleRoutingProblem/model"
+	"ixior462/VehicleRoutingProblem/model"
 	"log"
 	"math/rand"
 	"os"

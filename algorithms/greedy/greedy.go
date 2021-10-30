@@ -1,8 +1,8 @@
 package greedy
 
 import (
-	"ixior/VehicleRoutingProblem/common"
-	"ixior/VehicleRoutingProblem/model"
+	"ixior462/VehicleRoutingProblem/common"
+	"ixior462/VehicleRoutingProblem/model"
 )
 
 var depot = 0

@@ -1,9 +1,9 @@
 package algorithms
 
 import (
-	"ixior/VehicleRoutingProblem/algorithms/transformations"
-	"ixior/VehicleRoutingProblem/config"
-	"ixior/VehicleRoutingProblem/model"
+	"ixior462/VehicleRoutingProblem/algorithms/transformations"
+	"ixior462/VehicleRoutingProblem/config"
+	"ixior462/VehicleRoutingProblem/model"
 	"math/rand"
 )
 

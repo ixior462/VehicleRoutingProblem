@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"ixior/VehicleRoutingProblem/algorithms/heuristics"
-	"ixior/VehicleRoutingProblem/common"
-	"ixior/VehicleRoutingProblem/config"
+	"ixior462/VehicleRoutingProblem/algorithms/heuristics"
+	"ixior462/VehicleRoutingProblem/common"
+	"ixior462/VehicleRoutingProblem/config"
 )
 
 func main() {
