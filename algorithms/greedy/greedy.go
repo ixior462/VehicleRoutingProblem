@@ -7,23 +7,23 @@ import (
 
 var depot = 0
 
-func GetInitialSolution(input *model.CaseDTO) *model.Solution {
+func GetInitialSolution(data *model.CaseDTO) *model.Solution {
 	solution := model.Solution{}
-	unroutedClients := getUnroutedClients(input.GetDimension())
+	unroutedClients := getUnroutedClients(data.GetDimension())
 	currentNode := depot
 	route := make([]int, 0)
 
 	for len(unroutedClients) > 0 {
 		// Search for the best fitting node
-		bestNode, bestDistance := unroutedClients[0], input.Cost[currentNode][unroutedClients[0]]
+		bestNode, bestDistance := unroutedClients[0], data.Cost[currentNode][unroutedClients[0]]
 		for i := 1; i < len(unroutedClients); i++ {
-			if input.Cost[currentNode][unroutedClients[i]] < bestDistance {
-				bestNode, bestDistance = unroutedClients[i], input.Cost[currentNode][unroutedClients[i]]
+			if data.Cost[currentNode][unroutedClients[i]] < bestDistance {
+				bestNode, bestDistance = unroutedClients[i], data.Cost[currentNode][unroutedClients[i]]
 			}
 		}
 
 		// If current route will exceed capacity then create new route
-		if common.GetCapacity(route, input)+input.GetDemand(bestNode) > input.Capacity {
+		if common.GetCapacity(route, data)+data.GetDemand(bestNode) > data.Capacity {
 			solution.AddRoute(route)
 			route = make([]int, 0)
 			currentNode = depot

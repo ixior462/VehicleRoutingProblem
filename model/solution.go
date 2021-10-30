@@ -22,14 +22,14 @@ func (solution *Solution) getRoute(i int) []int {
 	return solution.Routes[i]
 }
 
-func (solution *Solution) GetCost(input *CaseDTO) float64 {
+func (solution *Solution) GetCost(data *CaseDTO) float64 {
 	if solution.cost == 0 {
 		for i := 0; i < len(solution.Routes); i++ {
-			solution.cost += input.Cost[0][solution.Routes[i][0]]
+			solution.cost += data.Cost[0][solution.Routes[i][0]]
 			for j := 0; j < len(solution.Routes[i])-1; j++ {
-				solution.cost += input.Cost[solution.Routes[i][j]][solution.Routes[i][j+1]]
+				solution.cost += data.Cost[solution.Routes[i][j]][solution.Routes[i][j+1]]
 			}
-			solution.cost += input.Cost[0][solution.Routes[i][len(solution.Routes[i])-1]]
+			solution.cost += data.Cost[0][solution.Routes[i][len(solution.Routes[i])-1]]
 		}
 	}
 	return solution.cost

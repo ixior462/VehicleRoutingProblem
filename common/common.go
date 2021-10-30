@@ -9,10 +9,10 @@ import (
 	"time"
 )
 
-func GetCapacity(route []int, input *model.CaseDTO) int {
+func GetCapacity(route []int, data *model.CaseDTO) int {
 	capacity := 0
 	for _, node := range route {
-		capacity += input.GetDemand(node)
+		capacity += data.GetDemand(node)
 	}
 	return capacity
 }
@@ -26,21 +26,21 @@ func GetDTO(path string) *model.CaseDTO {
 
 	defer f.Close()
 	scanner := bufio.NewScanner(f)
-	inputDTO := model.GetCaseDTO(scanner)
+	data := model.GetCaseDTO(scanner)
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 
-	return inputDTO
+	return data
 }
 
-func CloneSolution(inputSolution *model.Solution) *model.Solution {
-	copiedRoutes := make([][]int, len(inputSolution.Routes))
+func CloneSolution(solution *model.Solution) *model.Solution {
+	copiedRoutes := make([][]int, len(solution.Routes))
 
 	for i := 0; i < len(copiedRoutes); i++ {
-		copiedRoutes[i] = make([]int, len(inputSolution.Routes[i]))
-		copy(copiedRoutes[i], inputSolution.Routes[i])
+		copiedRoutes[i] = make([]int, len(solution.Routes[i]))
+		copy(copiedRoutes[i], solution.Routes[i])
 	}
 
 	return &model.Solution{Routes: copiedRoutes}

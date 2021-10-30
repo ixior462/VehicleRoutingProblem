@@ -233,12 +233,12 @@ func TestTransformations(t *testing.T) {
 
 }
 
-func checkSolution(input *model.CaseDTO, solution *model.Solution) bool {
+func checkSolution(data *model.CaseDTO, solution *model.Solution) bool {
 	sum := 0
 	set := make(map[int]bool)
 	for i := 0; i < len(solution.Routes); i++ {
 		sum += len(solution.Routes[i])
-		if common.GetCapacity(solution.Routes[i], input) > input.Capacity {
+		if common.GetCapacity(solution.Routes[i], data) > data.Capacity {
 			return true
 		}
 		for j := 0; j < len(solution.Routes[i]); j++ {
@@ -246,7 +246,7 @@ func checkSolution(input *model.CaseDTO, solution *model.Solution) bool {
 		}
 	}
 
-	if sum != input.Dimension-1 && len(set) != sum {
+	if sum != data.Dimension-1 && len(set) != sum {
 		return true
 	}
 	return false
