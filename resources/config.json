@@ -1,0 +1,19 @@
+{
+  "DeterministicNeighborTransformationOccurrenceChance": 0.7,
+  "RandomRouteImprovementTransformationIterations": 3,
+  "ShortRouteImprovementTransformationIterations": 1,
+  "ReplaceHighestAverageNeighborhoodTransformationIterations": 1,
+  "HighCostNodeImprovementTransformationIterations": 5,
+  "RandomNodeTransformationIterations": 40,
+  "RandomRouteImprovementChanceOfRouteDeletion": 0.5,
+  "LocalSearchHeuristicImprovementCount": 1000,
+  "SimulatedAnnealingAlpha": 0.99,
+  "SimulatedAnnealingBeta": 1.05,
+  "SimulatedAnnealingM0": 5.0,
+  "SimulatedAnnealingTemperature": 5000.0,
+  "SimulatedAnnealingTemperatureMin": 0.001,
+  "SimulatedAnnealingTime": 0.0,
+  "SimulatedAnnealingTimeMax": 9000.0,
+  "TabuSearchMaxIterations": 10000,
+  "TabuSearchLengthOfTabuList": 20
+}
