@@ -31,13 +31,17 @@ func GetNeighbourSolutions(data *model.CaseDTO, inputSolution *model.Solution, c
 		solutions = append(solutions, transformations.RandomNodeTransformation(data, inputSolution))
 	}
 
+	for i := 0; i < configFile.MoveNeighborhoodTransformation; i++ {
+		solutions = append(solutions, transformations.MoveNeighborhoodTransformation(data, inputSolution))
+	}
+
 	return solutions
 }
 
 func GetNeighbourSolution(data *model.CaseDTO, inputSolution *model.Solution, configFile *config.Config) *model.Solution {
 
-	bestSolution := inputSolution
 	solutions := GetNeighbourSolutions(data, inputSolution, configFile)
+	bestSolution := solutions[0]
 	for _, solution := range solutions {
 		if solution.GetCost(data) < bestSolution.GetCost(data) {
 			bestSolution = solution

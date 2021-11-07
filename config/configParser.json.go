@@ -14,8 +14,8 @@ type Config struct {
 	ReplaceHighestAverageNeighborhoodTransformationIterations int     `json:"ReplaceHighestAverageNeighborhoodTransformationIterations"`
 	HighCostNodeImprovementTransformationIterations           int     `json:"HighCostNodeImprovementTransformationIterations"`
 	RandomNodeTransformationIterations                        int     `json:"RandomNodeTransformationIterations"`
+	MoveNeighborhoodTransformation                            int     `json:"MoveNeighborhoodTransformation"`
 	DeterministicNeighborTransformationOccurrenceChance       float64 `json:"DeterministicNeighborTransformationOccurrenceChance"`
-
 	// Heuristics
 	LocalSearchHeuristicImprovementCount int     `json:"LocalSearchHeuristicImprovementCount"`
 	SimulatedAnnealingAlpha              float64 `json:"SimulatedAnnealingAlpha"`

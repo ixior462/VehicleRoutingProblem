@@ -3,17 +3,17 @@ package transformations
 import (
 	"ixior462/VehicleRoutingProblem/common"
 	"ixior462/VehicleRoutingProblem/model"
-	"math"
+	"math/rand"
 	"sort"
 )
 
-// ReplaceHighestAverageNeighborhoodTransformation Find 5 most unprofitable nodes and then sorting them by demand, find best places for them
-func ReplaceHighestAverageNeighborhoodTransformation(data *model.CaseDTO, inputSolution *model.Solution) *model.Solution {
+// MoveNeighborhoodTransformation remove 5 profitable nodes and randomly relocate them
+func MoveNeighborhoodTransformation(data *model.CaseDTO, inputSolution *model.Solution) *model.Solution {
 	newSolution := common.CloneSolution(inputSolution)
 	unroutedNodes := make([]int, 0)
 
 	for i := 0; i < 5; i++ {
-		// Find the most unprofitable node
+		// Find the most profitable node
 		highestCost := 0.0
 		maxI, maxJ := -1, -1
 		for i := 0; i < len(newSolution.Routes); i++ {
@@ -31,7 +31,6 @@ func ReplaceHighestAverageNeighborhoodTransformation(data *model.CaseDTO, inputS
 				}
 			}
 		}
-
 		if maxI == -1 || maxJ == -1 {
 			return inputSolution
 		}
@@ -45,33 +44,26 @@ func ReplaceHighestAverageNeighborhoodTransformation(data *model.CaseDTO, inputS
 		}
 	}
 
+	// sort from most demanding to least
 	sort.SliceStable(unroutedNodes, func(i, j int) bool {
 		return data.GetDemand(i) > data.GetDemand(j)
 	})
 
 	for node := 0; node < 5; node++ {
 		if common.CanBePutToRoutes(newSolution, data, unroutedNodes[node]) {
-			lowestCost := math.MaxFloat64
-			minI, minJ := -1, -1
-			for i := 0; i < len(newSolution.Routes); i++ {
-				if common.GetCapacity(newSolution.Routes[i], data)+data.GetDemand(unroutedNodes[node]) <= data.Capacity {
-					for j := 0; j <= len(newSolution.Routes[i]); j++ {
-						node1, node2 := 0, 0
-						if j != 0 {
-							node1 = newSolution.Routes[i][j-1]
-						}
-						if j != len(newSolution.Routes[i]) {
-							node2 = newSolution.Routes[i][j]
-						}
-						cost := data.Cost[node1][unroutedNodes[node]] + data.Cost[unroutedNodes[node]][node2]
-						if cost < lowestCost {
-							lowestCost, minI, minJ = cost, i, j
-						}
-					}
+			// Find new place to insert random Node
+			for attempts := 0; attempts < 4000; attempts++ {
+				if attempts == 3999 {
+					return inputSolution
 				}
+				newRandomRoute := rand.Intn(len(newSolution.Routes))
+				if common.GetCapacity(newSolution.Routes[newRandomRoute], data)+data.GetDemand(unroutedNodes[node]) > data.Capacity {
+					continue
+				}
+				newRandomIndex := rand.Intn(len(newSolution.Routes[newRandomRoute]))
+				newSolution.Routes[newRandomRoute] = common.AppendAtIndex(newSolution.Routes[newRandomRoute], newRandomIndex, unroutedNodes[node])
+				break
 			}
-			// Insert removed node
-			newSolution.Routes[minI] = common.AppendAtIndex(newSolution.Routes[minI], minJ, unroutedNodes[node])
 		} else {
 			newSolution.AddRoute([]int{unroutedNodes[node]})
 		}

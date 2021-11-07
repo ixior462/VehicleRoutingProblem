@@ -229,6 +229,10 @@ func TestTransformations(t *testing.T) {
 		if checkSolution(inputDTO, solution5) {
 			t.Error("ReplaceHighestAverageNeighborhoodTransformation failed for " + example)
 		}
+		solution6 := MoveNeighborhoodTransformation(inputDTO, initialSolution)
+		if checkSolution(inputDTO, solution6) {
+			t.Error("ReplaceHighestAverageNeighborhoodTransformation failed for " + example)
+		}
 	}
 
 }
