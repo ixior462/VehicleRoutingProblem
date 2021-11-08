@@ -3,19 +3,22 @@ package heuristics
 import (
 	"ixior462/VehicleRoutingProblem/algorithms"
 	"ixior462/VehicleRoutingProblem/algorithms/greedy"
+	"ixior462/VehicleRoutingProblem/common"
 	"ixior462/VehicleRoutingProblem/config"
 	"ixior462/VehicleRoutingProblem/model"
 )
 
 func TabuSearchHeuristic(data *model.CaseDTO, configFile *config.Config) *model.Solution {
 
-	bestSolution := greedy.GetInitialSolution(data)
-	currentSolution := bestSolution
+	initialSolution := greedy.GetInitialSolution(data)
+	bestSolution := common.CloneSolution(initialSolution)
+	currentSolution := common.CloneSolution(initialSolution)
 	tabuList := make([]*model.Solution, 0)
+	tabuList = append(tabuList, initialSolution)
 
 	for i := 0; i < configFile.TabuSearchMaxIterations; i++ {
 		solutions := algorithms.GetNeighbourSolutions(data, currentSolution, configFile)
-
+		currentSolution = common.CloneSolution(initialSolution)
 		for _, solution := range solutions {
 			if !contain(tabuList, solution) && solution.GetCost(data) < currentSolution.GetCost(data) {
 				currentSolution = solution

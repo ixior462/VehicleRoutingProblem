@@ -5,6 +5,7 @@
   "ReplaceHighestAverageNeighborhoodTransformationIterations": 1,
   "HighCostNodeImprovementTransformationIterations": 5,
   "RandomNodeTransformationIterations": 40,
+  "MoveNeighborhoodTransformation": 10,
   "RandomRouteImprovementChanceOfRouteDeletion": 0.5,
   "LocalSearchHeuristicImprovementCount": 1000,
   "SimulatedAnnealingAlpha": 0.99,

@@ -6,15 +6,18 @@ import (
 	"ixior462/VehicleRoutingProblem/common"
 	"ixior462/VehicleRoutingProblem/config"
 )
-const resourcePath = "./resources/X/X-n627-k43.vrp"
+
+const resourcePath = "./resources/M/M-n200-k17.vrp"
 const configPath = "./resources/config.json"
 
 func main() {
-	inputDTO := common.GetDTO(resourcePath)
+	data := common.GetDTO(resourcePath)
 	configFile := config.GetConfig(configPath)
-	solution := heuristics.TabuSearchHeuristic(inputDTO, configFile)
-	//solution := heuristics.LocalSearchHeuristic(inputDTO, configFile)
-	//solution := heuristics.SimulatedAnnealingHeuristic(inputDTO, configFile)
+	tabuSearchSolution := heuristics.TabuSearchHeuristic(data, configFile)
+	localSearchSolution := heuristics.LocalSearchHeuristic(data, configFile)
+	simulatedAnnealingSolution := heuristics.SimulatedAnnealingHeuristic(data, configFile)
 
-	fmt.Println(solution)
+	fmt.Println("LocalSearchHeuristic: ", localSearchSolution.GetCost(data))
+	fmt.Println("SimulatedAnnealingHeuristic: ", simulatedAnnealingSolution.GetCost(data))
+	fmt.Println("TabuSearchHeuristic: ", tabuSearchSolution.GetCost(data))
 }
